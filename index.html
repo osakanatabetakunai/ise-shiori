@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>伊勢神宮 旅のしおり（食べ歩きガイド付き）</title>
+<style>
+:root{--gravel:#ECEEEA;--forest:#1F3A2E;--kanto:#35558A;--kansai:#B7791F;--paper:#fff;--ink:#22261F;--mute:#6B726A;--line:#D5D9D1;--tabh:46px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;line-height:1.6}
+.tabs{position:sticky;top:0;z-index:8;height:var(--tabh);display:flex;background:#16291F}
+.tabs a{flex:1;display:flex;align-items:center;justify-content:center;color:#C9DCCF;text-decoration:none;font-weight:700;font-size:14px;border-bottom:3px solid transparent}
+.tabs a[aria-current="page"]{color:#fff;border-bottom-color:#E0A93B}
+.tabs a:focus-visible{outline:3px solid #E0A93B;outline-offset:-3px}
+#p-guide{padding-bottom:84px}
+#p-guide .chips{top:var(--tabh)}
+#p-shiori .golink{display:inline-block;background:var(--forest);color:#fff;text-decoration:none;font-weight:700;font-size:13.5px;padding:7px 16px;border-radius:999px}
+
+#p-shiori header {background: var(--forest);
+    color: #fff;
+    padding: 36px 20px 30px;
+    text-align: center;}
+#p-shiori header h1 {margin: 0;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-weight: 700;
+    font-size: clamp(26px, 7vw, 40px);
+    letter-spacing: .12em;}
+#p-shiori header p {margin: 8px 0 0; font-size: 14px; opacity: .8;}
+#p-shiori .legend {display: flex; justify-content: center; gap: 18px;
+    margin: 18px auto 0; font-size: 13px;}
+#p-shiori .legend span::before {content: ""; display: inline-block; width: 10px; height: 10px;
+    border-radius: 50%; margin-right: 6px; vertical-align: -1px;}
+#p-shiori .legend .k::before {background: #8FB0E6;}
+#p-shiori .legend .s::before {background: #F0BE63;}
+#p-shiori .legend .m::before {background: #fff;}
+#p-shiori main {max-width: 640px; margin: 0 auto; padding: 24px 12px 56px;}
+#p-shiori .note {font-size: 12.5px; color: var(--mute); text-align: center; margin: 0 0 22px;}
+#p-shiori .lanes {position: relative;
+    display: grid;
+    grid-template-columns: 1fr 52px 1fr;
+    row-gap: 14px;}
+#p-shiori .lanes::before {content: ""; position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 2px; margin-left: -1px; background: #B9C0B5;}
+#p-shiori .lane-head {text-align: center; font-weight: 700; font-size: 15px;
+    padding: 6px 0; border-radius: 999px; color: #fff; z-index: 1;}
+#p-shiori .lane-head.k {background: var(--kanto); grid-column: 1;}
+#p-shiori .lane-head.s {background: var(--kansai); grid-column: 3;}
+#p-shiori .time {grid-column: 2; z-index: 1; align-self: start; justify-self: center;
+    background: var(--paper); border: 2px solid var(--forest);
+    border-radius: 999px; padding: 1px 6px; font-size: 13px; font-weight: 700;
+    font-variant-numeric: tabular-nums; white-space: nowrap;}
+#p-shiori .card {background: var(--paper); border-radius: 10px; padding: 9px 11px;
+    font-size: 13.5px; border-top: 4px solid var(--forest);
+    box-shadow: 0 1px 3px rgba(31,58,46,.12);}
+#p-shiori .card b {display: block; font-size: 14.5px; line-height: 1.4;}
+#p-shiori .card small {display: block; color: var(--mute); font-size: 12px; margin-top: 3px;}
+#p-shiori .card.k {grid-column: 1; grid-row: auto; border-top-color: var(--kanto);}
+#p-shiori .card.s {grid-column: 3; border-top-color: var(--kansai);}
+#p-shiori .row-merge {grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; z-index: 1;}
+#p-shiori .row-merge .time {margin-bottom: -12px; position: relative; z-index: 2; grid-column: auto;}
+#p-shiori .row-merge .card {width: 100%; padding-top: 20px; text-align: center; border-top-width: 4px;
+    max-width: 100%;}
+#p-shiori .row-merge.meet .card {background: var(--forest); color: #fff; border-top-color: #9BC4A9;}
+#p-shiori .row-merge.meet .card small {color: #C9DCCF;}
+#p-shiori .row-merge.end .card {background: #F6F1E3; border-top-color: var(--kansai);}
+#p-shiori footer {text-align: center; font-size: 13px; color: var(--mute); padding-bottom: 40px;}
+#p-guide header {background: var(--forest); color: #fff; padding: 26px 18px 22px;}
+#p-guide .back {color: #C9DCCF; font-size: 13px; text-decoration: none;}
+#p-guide header h1 {margin: 10px 0 4px;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+    font-size: clamp(22px, 6vw, 30px); letter-spacing: .08em; line-height: 1.35;}
+#p-guide header p {margin: 0; font-size: 13px; opacity: .8;}
+#p-guide .memo {max-width: 640px; margin: 14px auto 0; padding: 0 14px;
+    font-size: 12.5px; color: var(--mute);}
+#p-guide .memo div {background: #F6F1E3; border-radius: 10px; padding: 10px 13px; color: #4A4A3E;}
+#p-guide .memo b {color: var(--ink);}
+#p-guide .memo ul {margin: 4px 0 0; padding-left: 18px;}
+#p-guide .chips {position: sticky; top: 0; z-index: 5; background: var(--gravel);
+    display: flex; gap: 8px; overflow-x: auto; padding: 12px 14px 10px;
+    max-width: 640px; margin: 0 auto; scrollbar-width: none;}
+#p-guide .chips::-webkit-scrollbar {display: none;}
+#p-guide .chip {flex: none; border: 1.5px solid var(--forest); background: transparent; color: var(--forest);
+    font: inherit; font-size: 13.5px; font-weight: 700; padding: 5px 13px; border-radius: 999px;}
+#p-guide .chip[aria-pressed="true"] {background: var(--forest); color: #fff;}
+#p-guide .chip:focus-visible, #p-guide button:focus-visible, #p-guide a:focus-visible {outline: 3px solid #E0A93B; outline-offset: 2px;}
+#p-guide main {max-width: 640px; margin: 0 auto; padding: 0 14px 20px;}
+#p-guide .group-title {margin: 22px 0 8px; font-size: 15px; font-weight: 700;
+    border-left: 5px solid var(--c); padding-left: 9px;}
+#p-guide .spot {background: var(--paper); border-radius: 10px; padding: 11px 13px 11px;
+    margin-bottom: 10px; border-left: 5px solid var(--c);
+    box-shadow: 0 1px 3px rgba(31,58,46,.12);}
+#p-guide .spot.picked {outline: 2.5px solid var(--forest);}
+#p-guide .top {display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;}
+#p-guide .top h3 {margin: 0; font-size: 16px; line-height: 1.4;}
+#p-guide .area {flex: none; font-size: 11px; font-weight: 700; border-radius: 999px; padding: 1px 9px;
+    border: 1.5px solid var(--forest); color: var(--forest); margin-top: 2px;}
+#p-guide .area.y {background: var(--forest); color: #fff;}
+#p-guide .item {margin: 4px 0 0; font-size: 14px;}
+#p-guide .price {color: var(--mute); font-size: 13px; margin-left: 4px;}
+#p-guide .note {margin: 3px 0 0; font-size: 12.5px; color: var(--mute);}
+#p-guide .tags {display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px;}
+#p-guide .tag {font-size: 11px; color: #fff; background: var(--c2); border-radius: 4px; padding: 0 6px;}
+#p-guide .acts {display: flex; gap: 8px; margin-top: 9px;}
+#p-guide .pick, #p-guide .map {font: inherit; font-size: 13px; font-weight: 700; border-radius: 8px;
+    padding: 6px 12px; text-decoration: none; cursor: pointer; text-align: center;}
+#p-guide .pick {flex: 1; border: 1.5px solid var(--forest); background: #fff; color: var(--forest);}
+#p-guide .picked .pick {background: var(--forest); color: #fff;}
+#p-guide .map {border: 1.5px solid var(--line); background: #fff; color: var(--ink);}
+#p-guide .bar {position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    background: var(--forest); color: #fff; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));}
+#p-guide .bar-in {max-width: 640px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;}
+#p-guide .bar button {font: inherit; font-weight: 700; font-size: 14px; background: #fff; color: var(--forest);
+    border: 0; border-radius: 999px; padding: 8px 18px;}
+#p-guide .bar span {font-size: 14px;}
+#p-guide .sheet {position: fixed; inset: 0; z-index: 20; background: rgba(20,30,24,.55);
+    display: none; align-items: flex-end;}
+#p-guide .sheet.open {display: flex;}
+#p-guide .sheet-body {background: #fff; width: 100%; max-width: 640px; margin: 0 auto;
+    border-radius: 16px 16px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom));
+    max-height: 82vh; overflow-y: auto;}
+#p-guide .sheet h2 {margin: 0 0 6px; font-size: 17px;}
+#p-guide .sheet p.hint {margin: 0 0 10px; font-size: 12.5px; color: var(--mute);}
+#p-guide .sheet pre {white-space: pre-wrap; word-break: break-word; font: inherit; font-size: 14px;
+    background: var(--gravel); border-radius: 10px; padding: 12px; margin: 0 0 12px;}
+#p-guide .sheet-acts {display: flex; gap: 8px;}
+#p-guide .sheet-acts button {flex: 1; font: inherit; font-weight: 700; font-size: 14px; padding: 10px; border-radius: 10px;
+    border: 1.5px solid var(--forest); background: var(--forest); color: #fff;}
+#p-guide .sheet-acts button.sub {background: #fff; color: var(--forest);}
+#p-guide .empty {color: var(--mute); font-size: 14px;}
+#p-guide footer {max-width: 640px; margin: 0 auto; padding: 8px 18px 20px; font-size: 12px; color: var(--mute);}
+#p-guide footer a {color: var(--forest);}
+</style>
+</head>
+<body>
+<nav class="tabs" id="tabs" aria-label="ページ切り替え"><a href="#shiori">しおり</a><a href="#guide">食べ歩きガイド</a></nav>
+<div id="p-shiori">
+<header>
+  <h1>伊勢神宮 参拝の旅</h1>
+  <p>関東組・関西組、伊勢で合流</p>
+  <div class="legend">
+    <span class="k">関東組</span>
+    <span class="s">関西組</span>
+    <span class="m">みんな一緒</span>
+  </div>
+</header>
+
+<main>
+  <p class="note">※ 電車の時刻は仮です。乗る電車が決まったら差し替えてください。</p>
+  <p class="note"><a class="golink" href="#guide">🍡 おかげ横丁の食べ歩きガイドを見る</a></p>
+  <div class="lanes" id="lanes"></div>
+</main>
+</div>
+<div id="p-guide" hidden>
+<header>
+  <a class="back" href="#shiori">← しおりに戻る</a>
+  <h1>おかげ横丁・おはらい町<br>食べ歩きガイド</h1>
+  <p>気になるお店に「行きたい」を付けて、みんなで見比べよう</p>
+</header>
+
+<div class="memo">
+  <div>
+    <b>使い方</b>
+    <ul>
+      <li>気になるお店の「＋ 行きたい」をタップ。</li>
+      <li>画面下の「まとめを見る」から、選んだお店をコピーしてグループLINEに貼り付けられます。</li>
+      <li>「横丁内」はおかげ横丁の中、「おはらい町」は横丁の外の通り沿いのお店です。</li>
+    </ul>
+    <b style="display:block;margin-top:8px">時間の注意</b>
+    <ul>
+      <li>横丁内のお店の多くは17:00ごろまでの営業です（季節で変わります）。しおりの17:00は、お土産をおかげ横丁で買うには遅めなので、<b>16:00のフリータイム中に買うのがおすすめ</b>です。</li>
+      <li>価格は2026年7月時点の掲載価格（税込・テイクアウト）です。当日は変わっていることがあります。</li>
+    </ul>
+  </div>
+</div>
+
+<nav class="chips" id="chips" aria-label="カテゴリ"></nav>
+<main id="list"></main>
+
+<footer>
+  ※ 2026年9月29日に調べた内容です。営業時間や定休日は変わることがあるので、最新の情報は
+  <a href="https://okageyokocho.com/" target="_blank" rel="noopener">おかげ横丁の公式サイト</a>
+  （混雑状況のページもあります）で確認してください。
+</footer>
+
+<div class="bar">
+  <div class="bar-in">
+    <span id="count">行きたい：0件</span>
+    <button id="open">まとめを見る</button>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="行きたいお店のまとめ">
+  <div class="sheet-body">
+    <h2>行きたいお店のまとめ</h2>
+    <p class="hint">コピーして、グループLINEに貼り付けてください。</p>
+    <div id="summary"></div>
+    <div class="sheet-acts">
+      <button id="copy">コピーする</button>
+      <button class="sub" id="close">閉じる</button>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+(function(){
+/* ここを書き換えるだけで、しおりの内容を変更できます
+   side: "k" = 関東組 / "s" = 関西組 / "m" = みんな一緒
+   type: "meet" = 合流、"end" = 解散 */
+const plan = [
+  { time: "6:00",  side: "k", title: "東京駅 出発", sub: "のぞみ1号 博多行き" },
+  { time: "7:15",  side: "s", title: "京橋駅 合流", sub: "アニメイト前 待ち合わせ" },
+  { time: "7:22",  side: "s", title: "京橋駅 　発", sub: "外回り 4番ホーム" },
+  { time: "7:30",  side: "s", title: "鶴橋駅 　着", sub: "近鉄線乗り換え" },
+  { time: "7:34",  side: "k", title: "名古屋駅 着", sub: "JR関西本線・參宮線乗り換え" },
+  { time: "7:43",  side: "k", title: "名古屋駅 発", sub: "快速みえ51号 鳥羽行き" },
+  { time: "7:48",  side: "s", title: "鶴橋駅　 発", sub: "ビスタカー" },
+  { time: "9:30",  side: "k", title: "伊勢市駅 着", sub: "外宮まで徒歩5分ほど" },
+  { time: "9:34",  side: "s", title: "伊勢市駅 着", sub: "外宮まで徒歩5分ほど" },
+  { time: "9:40",  side: "m", type: "meet", title: "伊勢市駅で合流", sub: "ここから全員で行動" },
+  { time: "10:00", side: "m", title: "外宮 参拝", sub: "伊勢神宮は外宮から先にお参りするのが習わし" },
+  { time: "11:00", side: "m", title: "ランチ", sub: "お店は要確認・予約するなら早めに" },
+  { time: "12:00", side: "m", title: "内宮 参拝", sub: "外宮からはバスかタクシーで約15分" },
+  { time: "14:00", side: "m", title: "おかげ横丁・おはらい横丁", sub: "食べ歩きと散策" },
+  { time: "15:00", side: "m", title: "おやつ", sub: "赤福・伊勢うどん・とうふ屋さんなど" },
+  { time: "16:00", side: "m", title: "フリータイム", sub: "自由に過ごす" },
+  { time: "17:00", side: "m", title: "駅でお土産散策", sub: "帰りの電車の時間に注意" },
+  { time: "18:00", side: "m", type: "end", title: "解散 🙏✨", sub: "おつかれさまでした" }
+];
+
+const el = document.getElementById("lanes");
+const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+el.insertAdjacentHTML("beforeend",
+  '<div class="lane-head k">関東組</div><div></div><div class="lane-head s">関西組</div>');
+
+plan.forEach(p => {
+  const card = `<b>${esc(p.title)}</b>${p.sub ? `<small>${esc(p.sub)}</small>` : ""}`;
+  if (p.side === "m") {
+    el.insertAdjacentHTML("beforeend",
+      `<div class="row-merge ${p.type || ""}"><span class="time">${p.time}</span><div class="card">${card}</div></div>`);
+  } else if (p.side === "k") {
+    el.insertAdjacentHTML("beforeend",
+      `<div class="card k">${card}</div><span class="time">${p.time}</span><div></div>`);
+  } else {
+    el.insertAdjacentHTML("beforeend",
+      `<div></div><span class="time">${p.time}</span><div class="card s">${card}</div>`);
+  }
+});
+})();
+(function(){
+/* 内容を変えたいときは、下の spots を書き換えます
+   area: "y" = おかげ横丁の中 / "o" = おはらい町（横丁の外）
+   cats: 最初のカテゴリが「メインのカテゴリ」になります */
+const CATS = {
+  walk:  { label: "食べ歩き",       c: "#8A5A1C" },
+  sweet: { label: "甘味・カフェ",   c: "#9C4A72" },
+  meal:  { label: "食事",           c: "#2E6A5C" },
+  gift:  { label: "お土産",         c: "#4B4F9E" },
+  exp:   { label: "体験・見どころ", c: "#66705F" }
+};
+
+const spots = [
+  /* 食べ歩き */
+  { name: "豚捨", area: "y", cats: ["walk","meal"], item: "コロッケ", price: "130円",
+    note: "黒毛和牛のミンチとじゃがいものコロッケ。行列ができる人気店。お食事処（牛丼・すき焼きなど）は11:00から。" },
+  { name: "若松屋", area: "y", cats: ["walk","gift"], item: "伊勢ひりょうず", price: "400円",
+    note: "具が9種類入った揚げかまぼこ。チーズ棒・タコ棒もあります。練り物はお土産にも。" },
+  { name: "団五郎茶屋", area: "y", cats: ["walk","meal"], item: "松阪牛串", price: "900円",
+    note: "注文を受けてから網で焼く、塩コショウだけの串。そば・おにぎり・赤福氷・フルーツ氷もあります。" },
+  { name: "おかげ横丁 酒徳昆布", area: "y", cats: ["walk","gift"], item: "昆布屋のおむすび", price: "300円",
+    note: "手削りのとろろ昆布かおぼろ昆布で包んだおむすび（どちらかは当日のお楽しみ）。おぼろ昆布はお土産にも。" },
+  { name: "横丁いかだ荘", area: "y", cats: ["walk","meal"], item: "蒸し牡蠣（2個）", price: "1,200円",
+    note: "的矢かきを1年中食べられる、牡蠣料理のお店。" },
+  { name: "伊勢角屋麦酒 内宮前店", area: "y", cats: ["walk"], item: "カキフライ（2粒）", price: "380円",
+    note: "クラフトビールのお店。牡蠣は注文後に揚げてくれます。調味料バーあり。" },
+  { name: "手こね茶屋 おはらい町中央店", area: "o", cats: ["walk","meal"], item: "手巻きてこねずし", price: "400円",
+    note: "漁師料理のてこねずしを、食べ歩きしやすい手巻きスタイルで。カツオの漬けが入っています。" },
+  { name: "ゑびや商人館", area: "o", cats: ["walk"], item: "松阪牛寿司（竹）", price: "700円",
+    note: "ガスバーナーで炙る実演つき。" },
+  { name: "松阪まるよし 伊勢おはらい町店", area: "o", cats: ["walk","meal"], item: "松阪牛牛鍋まん", price: "500円",
+    note: "店頭のせいろで蒸す肉まん。2階はレストラン（牛鍋など）です。" },
+  { name: "伊勢牛若丸", area: "o", cats: ["walk"], item: "松阪牛のにぎり（2貫）", price: "価格は要確認",
+    note: "カルビとサーロインのにぎりを立ち食いできます。" },
+  { name: "まるごと果汁店", area: "o", cats: ["walk"], item: "まるごとオレンジ／グレープフルーツ", price: "各450円",
+    note: "果実の皮ごと果肉をジュースにして、ストローで飲みます。果汁100%。" },
+
+  /* 甘味・カフェ */
+  { name: "赤福本店", area: "o", cats: ["sweet","gift"], item: "赤福餅（2個・ほうじ茶付き）", price: "400円",
+    note: "店内限定のセット。土産の定番でもあります。季節の赤福氷・ぜんざいもあります（ぜんざいは向かいの別店舗）。" },
+  { name: "だんご屋", area: "y", cats: ["sweet","walk"], item: "黒糖みつ団子", price: "250円",
+    note: "店頭で焼くお団子。伊勢地方で親しまれてきた黒蜜ダレ。みたらしもあります。" },
+  { name: "伊勢醤油本舗", area: "y", cats: ["sweet","gift"], item: "伊勢醤油ソフトクリーム", price: "400円",
+    note: "バニラに醤油のコクと塩気。醤油の専門店なので、お土産にも。" },
+  { name: "へんばや おはらい町店", area: "o", cats: ["sweet"], item: "へんば餅（2個）", price: "230円",
+    note: "1775年創業。焼き目のあるこしあん餅。イートインでお茶が飲めます。月曜定休（要確認）。" },
+  { name: "山村みるくがっこう 内宮前店", area: "o", cats: ["sweet"], item: "山村ぷりんソフト", price: "500円",
+    note: "とろとろのプリンにソフトクリームがのった2層のスイーツ。" },
+  { name: "伊勢プリンの鉄人", area: "o", cats: ["sweet"], item: "プリントースト", price: "500円",
+    note: "プリン液に浸して焼いたパンに、バニラソフトと生クリーム。" },
+  { name: "はちみつ屋 松治郎の舗 伊勢おはらい町店", area: "o", cats: ["sweet","gift"], item: "ハニポテ（Rサイズ）", price: "580円",
+    note: "自家製はちみつをかけた大学芋。蜂の巣をのせるコムハニーは+250円。" },
+  { name: "いもんね 伊勢内宮前本店", area: "o", cats: ["sweet"], item: "ジェラ餅", price: "590円〜",
+    note: "伊勢芋入りの餅でジェラートを包みます。干し芋味が一番人気。" },
+  { name: "五十鈴川カフェ", area: "y", cats: ["sweet"], item: "くるり", price: "350円",
+    note: "五十鈴川ぞいのカフェ。ゆっくり休みたいときに。ネルドリップのコーヒーも。" },
+  { name: "おかげ横丁 なかむら珈琲", area: "y", cats: ["sweet"], item: "自家焙煎珈琲", price: "",
+    note: "自家焙煎のコーヒー専門店。" },
+  { name: "五十鈴茶屋 本店", area: "o", cats: ["sweet","gift"], item: "和菓子・洋菓子", price: "",
+    note: "食べログ百名店の受賞歴あり。休憩にも手土産にも。" },
+
+  /* 食事 */
+  { name: "ふくすけ", area: "y", cats: ["meal","walk"], item: "伊勢うどん", price: "650円",
+    note: "極太の麺をやわらかく茹で、濃い色のタレを絡めて食べる伊勢名物。縁台席あり。" },
+  { name: "すし久", area: "y", cats: ["meal"], item: "てこね寿司などの漁師料理", price: "",
+    note: "季節によって伊勢海老・牡蠣・海鮮のメニューもあります。" },
+  { name: "海老丸", area: "y", cats: ["meal"], item: "伊勢志摩の季節の漁師めし", price: "", note: "" },
+  { name: "はいからさん", area: "y", cats: ["meal","sweet"], item: "はいからさんハンバーグ", price: "1,300円",
+    note: "洋館の2階にある洋食店。ハヤシライス・オムライス・デザートも。" },
+  { name: "野あそび棚", area: "y", cats: ["meal"], item: "かまど炊きの土鍋ごはん", price: "", note: "" },
+  { name: "横丁とりぶん倭", area: "y", cats: ["meal"], item: "伊勢赤どりの料理", price: "", note: "鳥料理の専門店。" },
+  { name: "伊勢鮨 海さち山さち", area: "y", cats: ["meal"], item: "三重の海と山の幸のカウンター鮨", price: "", note: "" },
+  { name: "招福茶屋", area: "y", cats: ["meal"], item: "", price: "", note: "メニューは公式サイトで確認してください。" },
+  { name: "岩戸屋（参宮亭）", area: "o", cats: ["meal","gift"], item: "参宮コンビ（伊勢うどん＋てこね寿司）", price: "価格は要確認",
+    note: "岩戸餅と生姜糖が名物のお土産店。食堂は通りから直接入れます。" },
+
+  /* お土産 */
+  { name: "伊勢路 名産味の館", area: "y", cats: ["gift"], item: "三重の名産がそろう店", price: "",
+    note: "三重のこだわりの品を集めたお店。ここで一通りそろいます。" },
+  { name: "傳兵衛", area: "y", cats: ["gift"], item: "旬野菜の漬物", price: "", note: "" },
+  { name: "銭屋", area: "y", cats: ["gift"], item: "昔なつかしい駄菓子", price: "", note: "" },
+  { name: "伊勢 ゑびす ひらき屋", area: "y", cats: ["gift"], item: "海産物", price: "",
+    note: "公式では「漁師が集まる店」と紹介されています。" },
+  { name: "神路屋", area: "y", cats: ["gift"], item: "工芸品・暮らしの道具", price: "",
+    note: "季節の日本のものと、三重を中心とした手仕事の工芸品。" },
+  { name: "灯りの店", area: "y", cats: ["gift"], item: "キャンドル", price: "",
+    note: "洋館「森翁館」の中。150種類以上、全国約50の作家・メーカーの作品。" },
+  { name: "もめんや藍", area: "y", cats: ["gift"], item: "松阪もめん・藍染め", price: "",
+    note: "松阪もめんを中心に、藍染めのオリジナル製品。" },
+  { name: "おみやげや", area: "y", cats: ["gift"], item: "工芸品・雑貨", price: "", note: "詳しくは公式サイトで確認してください。" },
+  { name: "くつろぎや", area: "y", cats: ["gift"], item: "工芸品・雑貨", price: "", note: "詳しくは公式サイトで確認してください。" },
+  { name: "吉兆招福亭", area: "y", cats: ["gift"], item: "縁起物・工芸品", price: "", note: "詳しくは公式サイトで確認してください。" },
+  { name: "伊勢路栽苑", area: "y", cats: ["gift","exp"], item: "盆栽・草花・苗木", price: "",
+    note: "伊勢の作家さんの盆栽も。節句などに合わせた体験もあります。" },
+  { name: "御木本真珠島店", area: "y", cats: ["gift"], item: "真珠", price: "", note: "" },
+
+  /* 体験・見どころ */
+  { name: "オカゲ屋敷", area: "y", cats: ["exp"], item: "体験型ミュージアム", price: "",
+    note: "おかげ横丁の公式が案内している施設。内容や料金は公式サイトで確認してください。" },
+  { name: "きもの日和あやの", area: "y", cats: ["exp"], item: "着物の着付け・和小物", price: "",
+    note: "おかげ横丁の玄関口。着物で参拝したいときに。" }
+];
+
+const state = { filter: "all", picked: new Set() };
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mapUrl = s => "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent(s.name + " " + (s.area === "y" ? "おかげ横丁" : "おはらい町 伊勢"));
+
+spots.forEach((s, i) => s.id = i);
+
+function renderChips() {
+  const items = [["all", "すべて", spots.length]].concat(
+    Object.keys(CATS).map(k => [k, CATS[k].label, spots.filter(s => s.cats.includes(k)).length]));
+  $("chips").innerHTML = items.map(([k, label, n]) =>
+    `<button class="chip" data-f="${k}" aria-pressed="${state.filter === k}">${label} ${n}</button>`).join("");
+}
+
+function card(s) {
+  const main = CATS[s.cats[0]];
+  const tags = s.cats.map(k => `<span class="tag" style="--c2:${CATS[k].c}">${CATS[k].label}</span>`).join("");
+  const on = state.picked.has(s.id);
+  return `<article class="spot${on ? " picked" : ""}" data-id="${s.id}" style="--c:${main.c}">
+    <div class="top"><h3>${esc(s.name)}</h3><span class="area ${s.area}">${s.area === "y" ? "横丁内" : "おはらい町"}</span></div>
+    ${s.item ? `<p class="item"><b>${esc(s.item)}</b>${s.price ? `<span class="price">${esc(s.price)}</span>` : ""}</p>` : ""}
+    ${s.note ? `<p class="note">${esc(s.note)}</p>` : ""}
+    <div class="tags">${tags}</div>
+    <div class="acts">
+      <button class="pick" data-pick="${s.id}" aria-pressed="${on}">${on ? "✓ 行きたい" : "＋ 行きたい"}</button>
+      <a class="map" href="${mapUrl(s)}" target="_blank" rel="noopener">地図で見る</a>
+    </div>
+  </article>`;
+}
+
+function renderList() {
+  let html = "", last = "";
+  spots.forEach(s => {
+    if (state.filter !== "all" && !s.cats.includes(state.filter)) return;
+    if (state.filter === "all" && s.cats[0] !== last) {
+      last = s.cats[0];
+      html += `<h2 class="group-title" style="--c:${CATS[last].c}">${CATS[last].label}</h2>`;
+    }
+    html += card(s);
+  });
+  $("list").innerHTML = html;
+}
+
+function updateBar() { $("count").textContent = "行きたい：" + state.picked.size + "件"; }
+
+function summaryText() {
+  const out = ["【おかげ横丁・おはらい町 行きたいところ】"];
+  Object.keys(CATS).forEach(k => {
+    const list = spots.filter(s => state.picked.has(s.id) && s.cats[0] === k);
+    if (!list.length) return;
+    out.push("", "▼" + CATS[k].label);
+    list.forEach(s => out.push("・" + s.name + (s.item ? "（" + s.item + (s.price && !s.price.includes("要確認") ? " " + s.price : "") + "）" : "")));
+  });
+  return out.join("\n");
+}
+
+function openSheet() {
+  $("summary").innerHTML = state.picked.size
+    ? `<pre id="sumtext">${esc(summaryText())}</pre>`
+    : `<p class="empty">まだ選んでいません。気になるお店の「＋ 行きたい」をタップしてください。</p>`;
+  $("copy").style.display = state.picked.size ? "" : "none";
+  $("copy").textContent = "コピーする";
+  $("sheet").classList.add("open");
+}
+
+async function copyText(t) {
+  try { await navigator.clipboard.writeText(t); }
+  catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = t; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (_) {}
+    ta.remove();
+  }
+}
+
+$("chips").addEventListener("click", e => {
+  const b = e.target.closest("[data-f]"); if (!b) return;
+  state.filter = b.dataset.f; renderChips(); renderList();
+  window.scrollTo({ top: 0 });
+});
+$("list").addEventListener("click", e => {
+  const b = e.target.closest("[data-pick]"); if (!b) return;
+  const id = Number(b.dataset.pick);
+  state.picked.has(id) ? state.picked.delete(id) : state.picked.add(id);
+  const el = b.closest(".spot"), on = state.picked.has(id);
+  el.classList.toggle("picked", on);
+  b.setAttribute("aria-pressed", on);
+  b.textContent = on ? "✓ 行きたい" : "＋ 行きたい";
+  updateBar();
+});
+$("open").addEventListener("click", openSheet);
+$("close").addEventListener("click", () => $("sheet").classList.remove("open"));
+$("sheet").addEventListener("click", e => { if (e.target === $("sheet")) $("sheet").classList.remove("open"); });
+$("copy").addEventListener("click", async () => {
+  await copyText(summaryText());
+  $("copy").textContent = "コピーしました";
+});
+
+renderChips(); renderList(); updateBar();
+})();
+(function(){
+const P={shiori:document.getElementById("p-shiori"),guide:document.getElementById("p-guide")};
+const links=document.querySelectorAll("#tabs a");
+function show(){
+  const k=location.hash==="#guide"?"guide":"shiori";
+  for(const n in P)P[n].hidden=n!==k;
+  links.forEach(a=>a.getAttribute("href")==="#"+k?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",show);show();
+})();
+</script>
+</body>
+</html>
