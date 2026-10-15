@@ -63,6 +63,9 @@ body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sa
 #p-shiori .row-merge.meet .card {background: var(--forest); color: #fff; border-top-color: #9BC4A9;}
 #p-shiori .row-merge.meet .card small {color: #C9DCCF;}
 #p-shiori .row-merge.end .card {background: #F6F1E3; border-top-color: var(--kansai);}
+#p-shiori .day-sep {grid-column: 1 / -1; text-align: center; z-index: 1; margin: 6px 0 0;}
+#p-shiori .day-sep span {display: inline-block; background: var(--forest); color: #fff; font-weight: 700;
+    font-size: 13.5px; padding: 4px 16px; border-radius: 999px;}
 #p-shiori footer {text-align: center; font-size: 13px; color: var(--mute); padding-bottom: 40px;}
 #p-guide header {background: var(--forest); color: #fff; padding: 26px 18px 22px;}
 #p-guide .back {color: #C9DCCF; font-size: 13px; text-decoration: none;}
@@ -153,7 +156,7 @@ body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sa
 <div id="p-shiori">
 <header>
   <h1>伊勢神宮 参拝の旅</h1>
-  <p>2026/10/31㈯</p>
+  <p>2026/10/30㈮〜10/31㈯</p>
   <div class="legend">
     <span class="k">関東組</span>
     <span class="s">関西組</span>
@@ -162,7 +165,7 @@ body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sa
 </header>
 
 <main>
-  <p class="note">※ 電車の時刻は仮です。乗る電車が決まったら差し替えてください。</p>
+  <p class="note">※ 関東組の電車の時刻は確定です。関西組の行きの時刻は仮なので、乗る電車が決まったら差し替えてください。</p>
   <p class="note"><a class="golink" href="#guide">🍡 おかげ横丁の食べ歩きガイドを見る</a></p>
   <div class="lanes" id="lanes"></div>
 </main>
@@ -267,15 +270,19 @@ body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sa
    side: "k" = 関東組 / "s" = 関西組 / "m" = みんな一緒
    type: "meet" = 合流、"end" = 解散 */
 const plan = [
-  { time: "6:00",  side: "k", title: "東京駅 出発", sub: "のぞみ1号 博多行き" },
+  { type: "day", title: "10/30㈮　関東組 前泊" },
+  { time: "13:09", side: "k", title: "東京駅 　発", sub: "名古屋駅 14:45着" },
+  { time: "14:45", side: "k", title: "名古屋駅 着", sub: "ホテルへ移動" },
+  { time: "🏨",    side: "k", title: "名古屋 宿泊", sub: "名鉄グランドホテル" },
+
+  { type: "day", title: "10/31㈯　伊勢へ" },
   { time: "7:15",  side: "s", title: "京橋駅 合流", sub: "アニメイト前 待ち合わせ" },
   { time: "7:22",  side: "s", title: "京橋駅 　発", sub: "外回り 4番ホーム" },
   { time: "7:30",  side: "s", title: "鶴橋駅 　着", sub: "近鉄線乗り換え" },
-  { time: "7:34",  side: "k", title: "名古屋駅 着", sub: "JR関西本線・參宮線乗り換え" },
-  { time: "7:43",  side: "k", title: "名古屋駅 発", sub: "快速みえ51号 鳥羽行き" },
   { time: "7:48",  side: "s", title: "鶴橋駅　 発", sub: "ビスタカー" },
+  { time: "8:10",  side: "k", title: "近鉄名古屋駅 発", sub: "伊勢市駅 9:31着" },
+  { time: "9:31",  side: "k", title: "伊勢市駅 着", sub: "外宮まで徒歩5分ほど" },
   { time: "9:35",  side: "s", title: "伊勢市駅 着", sub: "外宮まで徒歩5分ほど" },
-  { time: "9:30",  side: "k", title: "伊勢市駅 着", sub: "外宮まで徒歩5分ほど" },
   { time: "9:40",  side: "m", type: "meet", title: "伊勢市駅で合流", sub: "ここから全員で行動" },
   { time: "10:00", side: "m", title: "外宮 参拝", sub: "伊勢神宮は外宮から先にお参りするのが習わし" },
   { time: "11:00", side: "m", title: "ランチ", sub: "お店は要確認・予約するなら早めに" },
@@ -284,7 +291,14 @@ const plan = [
   { time: "15:00", side: "m", title: "おやつ", sub: "赤福・伊勢うどん・とうふ屋さんなど" },
   { time: "16:00", side: "m", title: "フリータイム", sub: "自由に過ごす" },
   { time: "17:00", side: "m", title: "駅でお土産散策", sub: "帰りの電車の時間に注意" },
-  { time: "18:00", side: "m", type: "end", title: "解散 🙏✨", sub: "おつかれさまでした" }
+  { time: "18:00", side: "m", type: "end", title: "解散 🙏✨", sub: "おつかれさまでした（関東組は18:16発、関西組は18:47発の電車で帰ります）" },
+
+  { time: "18:16", side: "k", title: "伊勢市駅 　発", sub: "近鉄名古屋駅 19:43着" },
+  { time: "18:47", side: "s", title: "伊勢市駅 　発", sub: "鶴橋駅 20:24着" },
+  { time: "19:43", side: "k", title: "近鉄名古屋駅 着", sub: "JR名古屋駅へ乗り換え" },
+  { time: "20:20", side: "k", title: "名古屋駅 　発", sub: "東京駅 21:57着" },
+  { time: "20:24", side: "s", title: "鶴橋駅 　着", sub: "おつかれさまでした" },
+  { time: "21:57", side: "k", title: "東京駅 　着", sub: "おつかれさまでした" }
 ];
 
 const el = document.getElementById("lanes");
@@ -294,6 +308,10 @@ el.insertAdjacentHTML("beforeend",
   '<div class="lane-head k">関東組</div><div></div><div class="lane-head s">関西組</div>');
 
 plan.forEach(p => {
+  if (p.type === "day") {
+    el.insertAdjacentHTML("beforeend", `<div class="day-sep"><span>${esc(p.title)}</span></div>`);
+    return;
+  }
   const card = `<b>${esc(p.title)}</b>${p.sub ? `<small>${esc(p.sub)}</small>` : ""}`;
   if (p.side === "m") {
     el.insertAdjacentHTML("beforeend",
