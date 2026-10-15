@@ -147,6 +147,21 @@ body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sa
 #p-know ol{margin:6px 0 0;padding-left:22px}
 #p-know li{margin:3px 0}
 #p-know .yr{display:inline-block;background:var(--forest);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:0 9px;margin-right:6px}
+#p-know h2#course{scroll-margin-top:58px}
+#p-know .cs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
+#p-know .cs button{flex:none;border:1.5px solid var(--forest);background:transparent;color:var(--forest);font:inherit;font-size:13.5px;font-weight:700;padding:5px 14px;border-radius:999px;cursor:pointer}
+#p-know .cs button[aria-pressed="true"]{background:var(--forest);color:#fff}
+#p-know .cs button:focus-visible{outline:3px solid #E0A93B;outline-offset:2px}
+#p-know .cl{list-style:none;margin:6px 0 0;padding:0;counter-reset:n}
+#p-know .cl li{counter-increment:n;display:flex;align-items:baseline;gap:9px;padding:6px 0;border-top:1px solid var(--line)}
+#p-know .cl li:first-child{border-top:0}
+#p-know .cl li::before{content:counter(n);flex:none;width:22px;height:22px;border-radius:50%;background:var(--forest);color:#fff;font-size:12px;font-weight:700;text-align:center;line-height:22px;font-variant-numeric:tabular-nums}
+#p-know .cl .nm{font-weight:700}
+#p-know .cl .nt{display:block;color:var(--mute);font-size:12.5px;font-weight:400}
+#p-know .cl .bd{display:inline-block;margin-left:6px;font-size:11px;font-weight:700;color:var(--kansai);border:1px solid var(--kansai);border-radius:999px;padding:0 7px;white-space:nowrap}
+#p-know .cmeta{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+#p-know .cmeta a{color:var(--forest);font-size:12.5px}
+#p-shiori .clink{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;color:var(--forest)}
 #p-know footer{max-width:640px;margin:0 auto;padding:14px 18px 0;font-size:12px;color:var(--mute)}
 #p-know footer a{color:var(--forest)}
 </style>
@@ -239,6 +254,15 @@ body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sa
 <div class="c"><p>お参りは<b>外宮から内宮へ</b>の順がならわしです。</p>
 <p class="s">外宮は伊勢市駅から歩いて約5分。外宮から内宮へはバス・タクシーで約10分。見どころをひと通り回って、外宮が約30分、内宮が約60分（ご祈祷の時間は含まず）。</p></div>
 
+<h2 id="course">参拝モデルコース</h2>
+<div class="c"><p>神宮公式が紹介しているモデルコースです。見たいコースをタップしてください。</p>
+<p class="s">各コースにご祈祷（御饌・御神楽）の時間は含まれません。事情により立入できない場所があります。</p></div>
+<div class="cs" id="cs"></div>
+<div id="cl"></div>
+<div class="c n"><h3>このしおりでのおすすめ</h3>
+<p><b>外宮</b>（10:00〜11:00）は<b>60分コース</b>がちょうど収まります。時間を短くしたいときは30分コースで。</p>
+<p><b>内宮</b>（12:00〜14:00）は外宮からの移動が約15分かかるので、<b>90分コース</b>が目安です。余裕がなければ60分コースで。</p></div>
+
 <h2>参拝マナー</h2>
 <div class="c"><h3>鳥居と参道</h3><p>鳥居の前では軽く一礼。参道は真ん中（正中）を避けて端を歩きます。歩く側は内宮が右側、外宮が左側です。</p>
 <p class="s">参道の外は立入禁止です。杉の木に巻かれた竹など、木肌を傷めないようにご協力を。</p></div>
@@ -262,7 +286,7 @@ body{margin:0;background:var(--gravel);color:var(--ink);font-family:"Hiragino Sa
 <div class="c"><h3>お守りは内宮と外宮、両方もらっていい？</h3><p>ご神徳が違うので、両方持つのがおすすめです。複数のお守りで神さまがケンカすることはありません。</p></div>
 <div class="c"><h3>内宮の見どころ</h3><p>宇治橋（日常と神聖な世界をつなぐ橋）、五十鈴川の御手洗場（川で手を清められます）、正宮、荒祭宮など。無料の休憩所・参集殿もあります。</p></div>
 </main>
-<footer>※ 伊勢神宮公式サイト「はじめての神宮」（2026年9月30日確認）をもとにまとめました。案内は変わることがあるので、最新の情報は<a href="https://www.isejingu.or.jp/" target="_blank" rel="noopener">公式サイト</a>で確認してください。</footer>
+<footer>※ 伊勢神宮公式サイト「はじめての神宮」（2026年9月30日確認）と、「外宮のモデルコース」「内宮のモデルコース」（2026年10月15日確認）をもとにまとめました。案内は変わることがあるので、最新の情報は<a href="https://www.isejingu.or.jp/" target="_blank" rel="noopener">公式サイト</a>で確認してください。</footer>
 </div>
 <script>
 (function(){
@@ -284,9 +308,9 @@ const plan = [
   { time: "9:31",  side: "k", title: "伊勢市駅 着", sub: "外宮まで徒歩5分ほど" },
   { time: "9:35",  side: "s", title: "伊勢市駅 着", sub: "外宮まで徒歩5分ほど" },
   { time: "9:40",  side: "m", type: "meet", title: "伊勢市駅で合流", sub: "ここから全員で行動" },
-  { time: "10:00", side: "m", title: "外宮 参拝", sub: "伊勢神宮は外宮から先にお参りするのが習わし" },
+  { time: "10:00", side: "m", title: "外宮 参拝", sub: "伊勢神宮は外宮から先にお参りするのが習わし", link: "🗺 外宮の回り方コース（30分／60分）" },
   { time: "11:00", side: "m", title: "ランチ", sub: "お店は要確認・予約するなら早めに" },
-  { time: "12:00", side: "m", title: "内宮 参拝", sub: "外宮からはバスかタクシーで約15分" },
+  { time: "12:00", side: "m", title: "内宮 参拝", sub: "外宮からはバスかタクシーで約15分", link: "🗺 内宮の回り方コース（60分／90分）" },
   { time: "14:00", side: "m", title: "おかげ横丁・おはらい横丁", sub: "食べ歩きと散策" },
   { time: "15:00", side: "m", title: "おやつ", sub: "赤福・伊勢うどん・とうふ屋さんなど" },
   { time: "16:00", side: "m", title: "フリータイム", sub: "自由に過ごす" },
@@ -312,7 +336,7 @@ plan.forEach(p => {
     el.insertAdjacentHTML("beforeend", `<div class="day-sep"><span>${esc(p.title)}</span></div>`);
     return;
   }
-  const card = `<b>${esc(p.title)}</b>${p.sub ? `<small>${esc(p.sub)}</small>` : ""}`;
+  const card = `<b>${esc(p.title)}</b>${p.sub ? `<small>${esc(p.sub)}</small>` : ""}${p.link ? `<a class="clink" href="#course">${esc(p.link)}</a>` : ""}`;
   if (p.side === "m") {
     el.insertAdjacentHTML("beforeend",
       `<div class="row-merge ${p.type || ""}"><span class="time">${p.time}</span><div class="card">${card}</div></div>`);
@@ -533,12 +557,40 @@ renderChips(); renderList(); updateBar();
 const P={shiori:document.getElementById("p-shiori"),guide:document.getElementById("p-guide"),know:document.getElementById("p-know")};
 const links=document.querySelectorAll("#tabs a");
 function show(){
-  const k=({"#guide":"guide","#know":"know"})[location.hash]||"shiori";
+  const k=({"#guide":"guide","#know":"know","#course":"know"})[location.hash]||"shiori";
   for(const n in P)P[n].hidden=n!==k;
   links.forEach(a=>a.getAttribute("href")==="#"+k?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current"));
-  window.scrollTo(0,0);
+  if(location.hash==="#course"){const c=document.getElementById("course");c&&c.scrollIntoView();}
+  else window.scrollTo(0,0);
 }
 window.addEventListener("hashchange",show);show();
+})();
+(function(){
+/* 神宮公式「外宮／内宮のモデルコース」より。spots は参拝する順番、short は短いコースにも含まれる場所 */
+const COURSES=[
+ {id:"g30",label:"外宮 30分",title:"外宮 30分コース",url:"https://www.isejingu.or.jp/visit/course/geku.html",
+  spots:[["火除橋"],["手水舎"],["正宮 豊受大神宮","まず感謝を伝える、外宮の中心のお社"],["御敷地"],["三ツ石"],["別宮 多賀宮"],["別宮 土宮"],["別宮 風宮"],["外宮神楽殿","ご祈祷やお守りの授与所"]]},
+ {id:"g60",label:"外宮 60分",title:"外宮 60分コース",url:"https://www.isejingu.or.jp/visit/course/geku.html",short:"g30",shortLabel:"30分",
+  spots:[["火除橋"],["清盛楠"],["手水舎"],["せんぐう館","式年遷宮のことを学べる施設"],["まがたま池"],["正宮 豊受大神宮","まず感謝を伝える、外宮の中心のお社"],["御敷地"],["三ツ石"],["別宮 多賀宮"],["別宮 土宮"],["下御井神社"],["別宮 風宮"],["四至神"],["五丈殿・九丈殿"],["外宮神楽殿","ご祈祷やお守りの授与所"],["北御門"],["御厩"],["度会国御神社・大津神社"]]},
+ {id:"n60",label:"内宮 60分",title:"内宮 60分コース",url:"https://www.isejingu.or.jp/visit/course/naiku.html",
+  spots:[["宇治橋","日常と神聖な世界をつなぐ橋"],["手水舎・御手洗場","五十鈴川で手を清められます"],["瀧祭神"],["正宮 皇大神宮","天照大御神をおまつりする、神宮の中心"],["御稲御倉"],["別宮 荒祭宮"],["別宮 風日祈宮"],["内宮神楽殿","ご祈祷やお守りの授与所"],["参集殿","無料の休憩所"]]},
+ {id:"n90",label:"内宮 90分",title:"内宮 90分コース",url:"https://www.isejingu.or.jp/visit/course/naiku.html",short:"n60",shortLabel:"60分",
+  spots:[["宇治橋","日常と神聖な世界をつなぐ橋"],["神苑"],["手水舎・御手洗場","五十鈴川で手を清められます"],["瀧祭神"],["忌火屋殿・祓所"],["御贄調舎"],["正宮 皇大神宮","天照大御神をおまつりする、神宮の中心"],["御稲御倉"],["外幣殿"],["別宮 荒祭宮"],["御酒殿・由貴御倉"],["五丈殿"],["四至神"],["別宮 風日祈宮"],["内宮神楽殿","ご祈祷やお守りの授与所"],["御厩"],["参集殿","無料の休憩所"],["大山祇神社・子安神社"]]}
+];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cs=document.getElementById("cs"),cl=document.getElementById("cl");
+let cur="g30";
+function render(){
+  cs.innerHTML=COURSES.map(c=>`<button data-c="${c.id}" aria-pressed="${c.id===cur}">${c.label}</button>`).join("");
+  const c=COURSES.find(x=>x.id===cur);
+  const shortC=c.short&&COURSES.find(x=>x.id===c.short);
+  const inShort=n=>shortC&&shortC.spots.some(t=>t[0]===n);
+  cl.innerHTML=`<div class="c"><div class="cmeta"><h3>${esc(c.title)}</h3><a href="${c.url}" target="_blank" rel="noopener">公式ページで地図を見る</a></div>
+  <p class="s">全${c.spots.length}か所${shortC?`　／　${c.shortLabel}コースにも含まれる場所に印がついています`:""}</p>
+  <ol class="cl">${c.spots.map(t=>`<li><span><span class="nm">${esc(t[0])}</span>${inShort(t[0])?`<span class="bd">${c.shortLabel}</span>`:""}${t[1]?`<span class="nt">${esc(t[1])}</span>`:""}</span></li>`).join("")}</ol></div>`;
+}
+cs.addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(!b)return;cur=b.dataset.c;render();});
+render();
 })();
 </script>
 </body>
